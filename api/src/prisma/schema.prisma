@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+}
+
+model Customer {
+  id             String   @id @default(uuid()) @db.Char(36)
+  fullName       String
+  dateOfBirth    DateTime
+  profession     String
+  email          String   @unique
+  contact        String
+  gender         String // ou Enum se preferir opções fixas
+  marital_status String
+  address        String
+  incomeSource   String // e.g., Empregado, Autônomo, etc.
+  monthlyIncome  Float
+  password       String
+  identityNumber String   @unique
+  role           Role     @default(USER)
+  grantor        Grantor?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  loan Loan? // relação opcional com o empréstimo
+}
+
+model Grantor {
+  id             String   @id @default(uuid()) @db.Char(36)
+  grantorName    String
+  grantorID      String   @unique
+  grantorContact String
+  customerId     String   @unique
+  customer       Customer @relation(fields: [customerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Loan {
+  id            String     @id @default(uuid()) @db.Char(36)
+  loanAmount    Float
+  balanceDue    Float
+  paymentTerm   Int // em meses
+  paymentMethod String // e.g., "Transferência", "Dinheiro", etc.
+  accountNumber String
+  collateral    String // e.g., "Imóvel", "Veículo", etc.
+  pawn          PawnStatus @default(NO)
+  installments  Int // número de parcelas
+  isActive      LoanStatus @default(PENDING)
+  customerId    String     @unique
+  customer      Customer   @relation(fields: [customerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Newsletter {
+  id        String   @id @default(uuid()) @db.Char(36)
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+enum LoanStatus {
+  PENDING
+  ACTIVE
+  REFUSED
+  PAID
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum PawnStatus {
+  YES
+  NO
+}

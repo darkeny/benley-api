@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato Financeiro</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .page {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            page-break-after: always;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content {
+            padding: 50px;
+            page-break-after: always;
+            position: relative;
+            box-sizing: border-box;
+            min-height: 100vh;
+            padding-bottom: 30px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-align: justify;
+            line-height: 1.5;
+            font-family: 'Courier New', Courier, monospace;
+            /* espaço reservado para a imagem */
+        }
+
+        .content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .footer-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+
+        .space {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .space-top {
+            padding-top: 0.5rem;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+
+
+        .signature-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .signature-box {
+            width: 48%;
+            text-align: center;
+        }
+
+        .signature-box strong {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .signature-line {
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .date-section {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page" style="background-image: url('https://i.ibb.co/R4LbtLX/Contrato-de-Financiamento.png')"></div>
+    <div class="content">
+        <div>
+            <strong>CONTRATO DE EMPRÉSTIMO<br></strong>
+            <span>Pelo presente instrumento particular de contrato de empréstimo, as partes abaixo identificadas:</span>
+            <p class="space">
+                Eu {{ customerFullName }}, Moçambicano/a com {{ customerAge }} anos de Idade, {{ customerMaritalStatus }}, {{ paymentProfession }} em
+                Mozambique, portadora do BI nº{{ customerIDNumber }}, residente e domiciliado no
+                Bairro: {{ customerAddress }}, declaro que tomei emprestado com a Group Benley Corporate. Em
+                ({{ Date }}) a quantia de ({{ loanAmount }} MTs),
+                valor este que será pago na totalidade, até ao dia ({{ EndDate }}).
+            </p>
+            <p>Têm entre si, de maneira justa e acordada, o seguinte:</p>
+
+            <strong class="center">1. OBJETO DO CONTRATO<br></strong>
+            <p>
+                1.1. O CREDOR empresta ao DEVEDOR, que aceita, a quantia de {{ loanAmountII }} MZN ({{ loanAmountInWords }} meticais ), a ser utilizada conforme acordo entre as partes.
+            </p>
+
+            <strong class="center">2. CONDIÇÕES DO EMPRÉSTIMO<br></strong>
+            <p>
+                2.1. O valor do empréstimo será entregue ao DEVEDOR por meio de [especificar a forma de
+                pagamento, como transferência bancária ou outro meio acordado], no ato da assinatura deste
+                contrato. <br>
+
+                2.2. O empréstimo será acrescido de juros à taxa de 30% (Trinta por cento) sobre o valor
+                total do empréstimo. <br>
+
+                2.3. O prazo para devolução do valor emprestado será no intervalo de 30 dias, sendo o
+                valor total devido, considerando os juros, de {{ balanceDue }} MZN
+                ({{ balanceDueInWords }}
+                meticais).
+            </p>
+
+            <strong class="center">3. FORMA DE PAGAMENTO<br></strong>
+            <p>
+                3.1. O pagamento será efetuado por [forma de pagamento, como transferência bancária,
+                pagamento em dinheiro ou outro acordo], para a conta bancária do CREDOR ou de outra forma
+                indicada pelo CREDOR. <br>
+            </p>
+
+            <strong class="center">4. PENALIDADES<br></strong>
+            <p>
+                4.1. Caso o DEVEDOR não efetue o pagamento do valor total devido até a data estabelecida,
+                será cobrada uma multa de 1% diarios sobre o valor total da dívida, além do
+                [percentual de juros] ao mês. <br>
+
+                4.2. Caso o atraso seja superior a [número de dias de atraso], o CREDOR poderá exigir o
+                pagamento integral da dívida antes do prazo acordado. <br>
+            </p>
+
+            <strong class="center">5. DISPOSIÇÕES GERAIS<br></strong>
+            <p>
+                5.1. O presente contrato poderá ser rescindido por qualquer uma das partes mediante notificação
+                prévia de 1 dia, sem prejuízo das penalidades aqui estipuladas. <br>
+
+                5.2. Fica eleito o foro da comarca de cidade de Maputo para resolver qualquer disputa
+                relacionada a este contrato. <br>
+            </p>
+
+            <p class="space">
+                Por estarem assim justas e contratadas, as partes assinam o presente contrato em uma
+                igual teor e forma.
+            </p>
+
+            <div>
+                <div class="signature-container">
+                    <div class="signature-box">
+                        <strong>CREDOR:</strong>
+                        Darken Machava<br>
+                        Representante da Group Benley Corporeity
+                        <div class="signature-line"></div><br>
+                        Assinatura
+                    </div>
+                    <div class="signature-box">
+                        <strong>DEVEDOR:</strong>
+                        {{ customerSignature }}<br>
+                        Cliente da Group Benley Corporeity
+                        <div class="signature-line"></div><br>
+                        Assinatura
+                    </div>
+                </div>
+
+                <div class="date-section">
+                    {{ Today }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
