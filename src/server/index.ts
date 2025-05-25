@@ -15,15 +15,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: origins,
-    methods: '*', // Permitir todos os métodos
+    origin: function (origin, callback) {
+        if (!origin || origins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 }));
+
+// Permitir requisições OPTIONS (preflight)
+app.options('*', cors());
 
 ServerRouters(app);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    console.log(`Server Running on http://127.0.0.1:${PORT}`);
+    console.log(`Server Running on PORT:${PORT}`);
 });
