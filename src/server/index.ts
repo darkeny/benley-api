@@ -11,14 +11,23 @@ const app = express();
 const prisma = new PrismaClient();
 const origins = process.env.KNOWN_ORIGINS?.split(",") || [];
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// LOG para debug
+app.use((req, res, next) => {
+    console.log("Incoming origin:", req.headers.origin);
+    console.log("Allowed origins:", origins);
+    next();
+});
 
+// Trata OPTIONS (preflight) corretamente
+app.options('*', cors());
+
+// Middleware CORS completo
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || origins.includes(origin)) {
             callback(null, true);
         } else {
+            console.error('Blocked by CORS:', origin);
             callback(new Error('Not allowed by CORS'));
         }
     },
@@ -27,8 +36,8 @@ app.use(cors({
     credentials: true,
 }));
 
-// Permitir requisições OPTIONS (preflight)
-app.options('*', cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 ServerRouters(app);
 
