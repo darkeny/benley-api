@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: origins,
+    origin: '*',
     methods: '*', // Permitir todos os métodos
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
